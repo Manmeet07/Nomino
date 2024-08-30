@@ -4,48 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduVista - Unlock Your Potential</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            border: 0;
+            background: #ffffff;
+            z-index: 99;
+            min-height: 80px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #242424;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-brand .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-toggler {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #242424;
+            cursor: pointer;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #242424;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #4a90e2;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(to bottom, #e6f2ff, #ffffff);
+            text-align: center;
+            padding: 8rem 1rem 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Features and Courses sections */
+        .features, .courses {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2, .courses h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-grid, .course-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .feature-card, .course-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+
+        .feature-card h3, .course-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .enroll-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* CTA section */
+        .cta {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .newsletter-form button {
+            background-color: white;
+            color: #4a90e2;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3, .footer-section h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #555;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+            }
+
+            .navbar-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .navbar-nav.show {
+                display: flex;
+            }
+
+            .nav-item {
+                margin: 0;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- ======START NAVGITION ======  -->
-    <nav class="navbar navbar-expand-lg">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
-            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
-        </button>
-        <!--End of Resposive Toggle icon-->
-        <div class="collapse navbar-collapse" id="navbarText">
-        <!--Main menu navigation list-->
-            <ul class="navbar-nav ml-auto">
+    <!-- ======START NAVIGATION ======  -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="#home">
+                <img src="/logo.png" alt="EduVista Logo" class="logo">
+                EduVista
+            </a>
+            <button class="navbar-toggler" type="button">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home" data-scroll-nav="0">Home</a>
+                    <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Courses" data-scroll-nav="1">Courses</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#About" data-scroll-nav="2">About</a>
+                    <a class="nav-link" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Contact" data-scroll-nav="3">Contact</a>
+                    <a class="nav-link" href="#blog">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#Signup" data-scroll-nav="4">Signup</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                 </li>
-                </ul>
-                <!--End of Main menu navigation list-->
+            </ul>
         </div>
-            <!--End of resposive collapse class-->
-        </nav>
-        <!-- ====== END NAVGITION ======  -->
-    
+    </nav>
+    <!-- ====== END NAVIGATION ======  -->
 
-    <section class="hero">
+    <section class="hero" id="home">
         <h1>Unlock Your Potential with EduVista</h1>
         <p>Discover a world of knowledge at your fingertips</p>
         <button class="cta-button">Explore Courses</button>
     </section>
 
-    <section class="features">
+    <section class="features" id="about">
         <h2>Why Choose EduVista?</h2>
         <div class="feature-grid">
             <div class="feature-card">
@@ -63,7 +357,7 @@
         </div>
     </section>
 
-    <section class="courses">
+    <section class="courses" id="services">
         <h2>Featured Courses</h2>
         <div class="course-grid">
             <div class="course-card">
@@ -87,7 +381,7 @@
         </div>
     </section>
 
-    <section class="cta">
+    <section class="cta" id="contact">
         <h2>Ready to Start Learning?</h2>
         <p>Join our newsletter and get the latest updates on new courses and special offers.</p>
         <form class="newsletter-form">
@@ -105,9 +399,9 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Courses</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -119,9 +413,43 @@
 
     <script>
         // Toggle mobile menu
-        document.querySelector('.navbar-toggle').addEventListener('click', function() {
-            document.querySelector('.navbar-links').classList.toggle('active');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarNav = document.querySelector('.navbar-nav');
+
+        navbarToggler.addEventListener('click', function() {
+            navbarNav.classList.toggle('show');
         });
+
+        // Close mobile menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbarNav.classList.remove('show');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hide navbar on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        window.addEventListener("scroll", function(){
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop){
+                document.querySelector('.navbar').style.transform = 'translateY(-100%)';
+            } else {
+                document.querySelector('.navbar').style.transform = 'translateY(0)';
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
     </script>
 </body>
 </html>
