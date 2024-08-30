@@ -1,12 +1,19 @@
+'use client'
+
 import React, { useState } from 'react'
 
 export default function EduVista() {
   const [email, setEmail] = useState('')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('Signed up with:', email)
     setEmail('')
+  }
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -17,7 +24,10 @@ export default function EduVista() {
             <span className="icon">🎓</span>
             <span className="logo-text">EduVista</span>
           </div>
-          <div className="navbar-links">
+          <div className="navbar-toggle" onClick={toggleMenu}>
+            <span className="icon">☰</span>
+          </div>
+          <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
             <button className="nav-button">Courses</button>
             <button className="nav-button">About</button>
             <button className="nav-button">Contact</button>
@@ -134,8 +144,14 @@ export default function EduVista() {
           margin-left: 0.5rem;
         }
 
-        .navbar-links {
+        .navbar-toggle {
           display: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+
+        .navbar-links {
+          display: flex;
         }
 
         .nav-button {
@@ -313,25 +329,45 @@ export default function EduVista() {
           border-top: 1px solid #555;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
+          .navbar-toggle {
+            display: block;
+          }
+
           .navbar-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          }
+
+          .navbar-links.active {
             display: flex;
           }
 
+          .nav-button {
+            margin: 0.5rem 1rem;
+          }
+
           .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2rem;
           }
 
           .hero p {
-            font-size: 1.5rem;
+            font-size: 1rem;
           }
 
           .newsletter-form {
-            flex-direction: row;
+            flex-direction: column;
+            align-items: center;
           }
 
           .newsletter-form input {
-            width: auto;
+            width: 100%;
           }
         }
       `}</style>
